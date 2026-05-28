@@ -1,0 +1,46 @@
+Preguntas frecuentes
+
+Pregunta: ¿Cómo puedo pedir un turno?
+Respuesta: Podés solicitar un turno por los canales oficiales habilitados, como Telegram, WhatsApp o formulario web. Para registrar la solicitud se puede pedir nombre, apellido, contacto, servicio, fecha y horario preferido. El turno queda confirmado solo cuando Clínica Aurora envía una confirmación expresa.
+
+Pregunta: ¿El turno queda reservado automáticamente cuando lo pido?
+Respuesta: No. La solicitud inicial no garantiza disponibilidad. El turno se considera confirmado únicamente cuando Clínica Aurora envía una confirmación expresa.
+
+Pregunta: ¿Qué pasa si llego tarde?
+Respuesta: Clínica Aurora tiene una tolerancia máxima de 15 minutos. Pasado ese tiempo, el turno puede reducirse, reprogramarse, cancelarse o considerarse como ausente, según el caso.
+
+Pregunta: ¿Puedo cancelar o reprogramar mi turno?
+Respuesta: Sí. El cliente puede cancelar o reprogramar con una anticipación mínima de 24 horas.
+
+Pregunta: ¿Qué pasa si cancelo con menos de 24 horas?
+Respuesta: La cancelación fuera del plazo puede generar pérdida de la seña, reprogramación sujeta a disponibilidad o restricciones para tomar nuevos turnos sin confirmación previa.
+
+Pregunta: ¿Qué pasa si no asisto al turno?
+Respuesta: La inasistencia sin aviso puede considerarse como turno ausente. Si había una seña, esta puede perderse.
+
+Pregunta: ¿La seña se devuelve?
+Respuesta: En general, la seña no se devuelve por inasistencia, cancelaciones fuera de plazo o servicios ya realizados. Puede evaluarse una devolución si el servicio no puede prestarse por responsabilidad de Clínica Aurora, si hubo cobro duplicado o error administrativo.
+
+Pregunta: ¿Los tratamientos garantizan resultados?
+Respuesta: No. Los resultados pueden variar según cada persona, tipo de piel, hábitos, antecedentes, constancia y características individuales.
+
+Pregunta: ¿Clínica Aurora realiza diagnósticos médicos?
+Respuesta: No. Los servicios tienen fines estéticos, de bienestar y cuidado personal. No reemplazan consultas médicas, dermatológicas, psicológicas ni nutricionales.
+
+Pregunta: ¿Qué datos me pueden pedir para reservar?
+Respuesta: Pueden solicitar nombre y apellido, teléfono o medio de contacto, servicio solicitado, fecha y horario preferido, y observaciones relevantes para la atención.
+
+Pregunta: ¿El bot puede responder cualquier consulta?
+Respuesta: El bot puede responder consultas generales, registrar solicitudes y ayudar con información sobre servicios y turnos. En casos sensibles, especiales o que requieran evaluación profesional, la consulta puede derivarse a una persona del equipo.
+
+Pregunta: ¿Mis datos personales se comparten con terceros?
+Respuesta: No se comparten con terceros no autorizados, salvo obligación legal o necesidad operativa vinculada al servicio.
+
+Pregunta: ¿Pueden atender menores de edad?
+Respuesta: Los menores deberán asistir acompañados por madre, padre, tutor o adulto responsable, según el servicio solicitado. Clínica Aurora puede rechazar o reprogramar la atención si considera necesaria una autorización expresa.
+
+Pregunta: ¿Qué pasa si tengo alergias, embarazo o alguna condición médica?
+Respuesta: El cliente debe informar cualquier alergia, medicación, embarazo, enfermedad, lesión, irritación, infección o condición relevante antes de iniciar el tratamiento.
+
+Pregunta: ¿Pueden cambiar los precios?
+Respuesta: Sí. Clínica Aurora puede modificar precios, servicios, promociones, horarios y disponibilidad. Los cambios no afectan turnos ya confirmados, salvo causa justificada o acuerdo con el cliente.
