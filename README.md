@@ -1,6 +1,6 @@
 # Clínica Aurora — Telegram Appointment Booking Bot
 
-Clínica Aurora is a fictional appointment booking bot created as a portfolio project.  
+Clínica Aurora is a fictional clinic appointment booking system designed to simulate how a real business could manage client inquiries and appointment requests through an automated Telegram bot.
 The goal of this project is to build a real-world automation workflow using Telegram, n8n, Supabase/PostgreSQL, SQL, an AI agent, and external knowledge documents.
 
 This project simulates a client-facing bot for a clinic, medical office, beauty center, or wellness business.
