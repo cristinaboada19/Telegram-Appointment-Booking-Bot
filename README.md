@@ -59,3 +59,13 @@ This project uses:
 - Embeddings
 - Vector Store
 - GitHub RAW files for RAG document loading
+
+## How It Works
+
+### RAG Document Loading Workflow
+
+This project includes a first RAG loading workflow in n8n. It uses `.txt` files stored in GitHub and reads them through RAW URLs, allowing n8n to download and process the documents.
+
+The goal of this workflow is to provide the AI agent with general clinic information, such as FAQs, terms and conditions, appointment policies, cancellations, rescheduling rules, payment details, and care instructions.
+
+For now, this RAG flow is only used for static or general information. Dynamic information like services, clients, appointments, and real availability will be handled separately through Supabase/PostgreSQL.
