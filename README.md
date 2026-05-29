@@ -69,3 +69,13 @@ This project includes a first RAG loading workflow in n8n. It uses `.txt` files 
 The goal of this workflow is to provide the AI agent with general clinic information, such as FAQs, terms and conditions, appointment policies, cancellations, rescheduling rules, payment details, and care instructions.
 
 For now, this RAG flow is only used for static or general information. Dynamic information like services, clients, appointments, and real availability will be handled separately through Supabase/PostgreSQL.
+
+### Test Chat Workflow
+
+A second workflow was created to test the bot conversation inside n8n before connecting it to Telegram.
+
+This workflow includes a chat trigger, an AI Agent, a Cohere chat model, simple memory, and the Simple Vector Store connected to the RAG documents loaded in the first workflow.
+
+So far, the agent is responding well to general clinic-related questions. It can use the uploaded documents to answer about appointment requests, confirmation rules, cancellations, rescheduling, and general policies.
+
+PostgreSQL/Supabase is not connected to this workflow yet. The current focus is to test the agent behavior and make sure the RAG knowledge base works correctly before adding real appointment and client data.

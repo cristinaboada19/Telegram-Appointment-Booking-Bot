@@ -1,0 +1,171 @@
+{
+  "name": "Telegram Appointment Booking Bot 2",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "341e2467-c8e9-4b96-aa31-6db856586525",
+      "name": "When chat message received",
+      "webhookId": "000d6d64-5993-411b-b5c6-daa237828395"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "6091b40c-5678-4d9a-943c-7028fe0b60df",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatCohere",
+      "typeVersion": 1,
+      "position": [
+        80,
+        208
+      ],
+      "id": "25862b4a-686d-4424-a69b-775c5cccb373",
+      "name": "Cohere Chat Model",
+      "credentials": {
+        "cohereApi": {
+          "id": "Li2Lqq19mDdIEwPk",
+          "name": "Cohere account 2"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        224,
+        208
+      ],
+      "id": "c37583dc-2a90-431e-babb-0de1e2d7d50c",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Eres el bot de la clinica Aurora",
+        "memoryKey": {
+          "__rl": true,
+          "value": "aurora_docs",
+          "mode": "list",
+          "cachedResultName": "aurora_docs"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        528,
+        112
+      ],
+      "id": "afb87763-0eb2-4e1b-b47e-c7bc0034ee1c",
+      "name": "Simple Vector Store"
+    },
+    {
+      "parameters": {
+        "modelName": "embed-multilingual-v3.0"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsCohere",
+      "typeVersion": 1,
+      "position": [
+        528,
+        272
+      ],
+      "id": "91f9937c-ae5a-4876-b808-eee37e7eafa7",
+      "name": "Embeddings Cohere",
+      "credentials": {
+        "cohereApi": {
+          "id": "Li2Lqq19mDdIEwPk",
+          "name": "Cohere account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cohere Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Vector Store": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Cohere": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Simple Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "2e13826a-0d75-4baf-a38d-1ea8aa3bc6aa",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7acb6e4616dfe1fe0399ec71119625da0571fb6ab1ec880764a63af749032f9d"
+  },
+  "id": "xfjwfjDI99b345sT",
+  "tags": []
+}
