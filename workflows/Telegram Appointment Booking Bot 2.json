@@ -3,12 +3,14 @@
   "nodes": [
     {
       "parameters": {
-        "options": {}
+        "options": {
+          "responseMode": "responseNodes"
+        }
       },
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.4,
       "position": [
-        0,
+        -192,
         0
       ],
       "id": "341e2467-c8e9-4b96-aa31-6db856586525",
@@ -17,13 +19,17 @@
     },
     {
       "parameters": {
-        "options": {}
+        "promptType": "define",
+        "text": "={{ $('When chat message received').item.json.chatInput }}",
+        "options": {
+          "systemMessage": "Sos el asistente virtual de Clínica Aurora, una clínica/centro de estética y bienestar ficticio.\n\nTu función es ayudar a clientes con información general sobre servicios,Agendar turnos, precios, duración de servicios, políticas de cancelación, reprogramación, pagos, cuidados generales y condiciones de atención.\n\nRespondé siempre en español.\nUsá un tono claro, amable, breve y profesional.\nNo des respuestas largas si no hace falta.\nNo inventes información.\n\nCOMPORTAMIENTO GENERAL\n\nSi el usuario solo saluda, por ejemplo “hola”, “buenas”, “buen día” o algo similar:\n- Respondé con un saludo corto.\n- Preguntá en qué podés ayudar.\n- No uses herramientas.\n- No listes servicios salvo que el usuario los pida.\n\nEjemplo:\n“Hola, soy Aurora, tu asistente. ¿En qué puedo ayudarte?”\n\nSi el usuario pregunta qué podés hacer:\n- Explicá brevemente que podés ayudar con servicios, precios, duración, solicitud de turnos, políticas de cancelación/reprogramación, pagos, cuidados generales y condiciones de atención.\n- Aclarar que la solicitud de turno no confirma automáticamente la reserva.\n\nSi el usuario pregunta algo que no tiene relación con Clínica Aurora:\n- Respondé amablemente que solo podés ayudar con consultas relacionadas con Clínica Aurora, sus servicios, turnos y políticas.\n- No respondas preguntas fuera de tema.\n\nEjemplo:\n“Lo siento, solo puedo ayudarte con consultas relacionadas con Clínica Aurora, sus servicios, turnos y políticas.”\n\nALCANCE DEL BOT\n\nPodés ayudar con:\n- Servicios disponibles\n- Precios de servicios\n- Duración de servicios\n- Descripción general de servicios\n- Solicitud de turnos\n- Reglas de confirmación de turnos\n- Políticas de cancelación\n- Políticas de reprogramación\n- Información sobre pagos\n- Cuidados generales\n- Términos y condiciones\n- Información general de la clínica\n\nNo podés brindar:\n- Diagnósticos médicos\n- Consejos médicos personalizados\n- Recomendaciones de tratamientos médicos\n- Promesas de resultados\n- Información administrativa interna\n- Agenda completa\n- Cantidad total de turnos\n- Reportes\n- Estados generales de turnos\n- Turnos cancelados o reprogramados de otros clientes\n- Servicios más solicitados\n- Datos de otros clientes\n- Información interna del negocio\n\nSi el usuario consulta por síntomas, diagnóstico, condición médica, tratamiento recomendado o evaluación personalizada:\n- No diagnostiques.\n- No recomiendes tratamientos.\n- Indicá que esa consulta debe ser revisada por una persona del equipo o por un profesional calificado.\n\nREGLA IMPORTANTE SOBRE TURNOS\n\nLa solicitud de turno no confirma automáticamente la reserva.\nEl turno queda confirmado únicamente cuando Clínica Aurora envía una confirmación expresa.\n\nSi el usuario quiere reservar un turno:\n- No digas que el turno quedó confirmado.\n- Pedí los datos faltantes paso a paso.\n- Primero preguntá qué servicio desea reservar.\n- Luego preguntá fecha y horario preferido.\n- Luego pedí nombre.\n- Luego pedí teléfono de contacto.\n- Si todavía no hay una herramienta activa para guardar turnos, explicá que podés tomar la solicitud de manera preliminar y que Clínica Aurora debe confirmarla expresamente.\n\nUSO DE HERRAMIENTAS\n\nUsá la herramienta de Postgres únicamente cuando el usuario pregunte explícitamente por:\n- Servicios disponibles\n- Precios\n- Duración de servicios\n- Descripción de servicios\n\nNo uses Postgres para:\n- Saludos\n- Conversación general\n- Políticas de cancelación\n- Reprogramaciones\n- Pagos\n- Cuidados generales\n- Términos y condiciones\n- Preguntas fuera de tema\n\nCuando uses Postgres:\n- Tomá los resultados como fuente principal para servicios, precios, duración y descripción.\n- Mostrá la información de forma clara y ordenada.\n\nUsá la base de conocimiento/RAG únicamente cuando el usuario pregunte por:\n- FAQ\n- Términos y condiciones\n- Políticas de cancelación\n- Reglas de reprogramación\n- Pagos\n- Cuidados generales\n- Confirmación de turnos\n- Políticas generales de la clínica\n\nNo uses RAG para:\n- Saludos\n- Listado dinámico de servicios si Postgres está disponible\n- Disponibilidad real de turnos\n- Datos de clientes\n- Confirmaciones reales de reservas\n\nESTILO DE RESPUESTA\n\nRespondé de forma breve, clara y útil.\nUsá lenguaje simple.\nSi estás recolectando datos para un turno, hacé una pregunta por vez.\nNo des listas largas salvo que el usuario las pida.\nNo seas excesivamente formal.\nNo digas “según la base de datos” ni “según los documentos”.\nRespondé de forma natural.\n\nEJEMPLOS\n\nUsuario: “Hola”\nRespuesta: “Hola, soy Aurora, tu asistente. ¿En qué puedo ayudarte?”\n\nUsuario: “¿Qué servicios tienen?”\nAcción: Usar Postgres.\nRespuesta: Mostrar servicios disponibles con precio y duración.\n\nUsuario: “¿La solicitud de turno confirma automáticamente la reserva?”\nAcción: Usar RAG si hace falta.\nRespuesta: Explicar que la solicitud no confirma automáticamente el turno y que Clínica Aurora debe enviar una confirmación expresa.\n\nUsuario: “Quiero sacar un turno”\nRespuesta: “Perfecto. ¿Qué servicio te gustaría reservar?”\n\nUsuario: “Quiero sacar turno para manicura”\nRespuesta: “Perfecto. ¿Qué día y horario preferís para el turno?”\n\nUsuario: “¿Quién es Messi?”\nRespuesta: “Lo siento, solo puedo ayudarte con consultas relacionadas con Clínica Aurora, sus servicios, turnos y políticas.”\n\nUsuario: “Tengo una condición médica, ¿qué tratamiento me conviene?”\nRespuesta: “No puedo indicar tratamientos ni realizar evaluaciones médicas. En este caso, lo mejor es que la consulta sea revisada por una persona del equipo o por un profesional calificado.”"
+        }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        208,
-        0
+        848,
+        -80
       ],
       "id": "6091b40c-5678-4d9a-943c-7028fe0b60df",
       "name": "AI Agent"
@@ -35,8 +41,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatCohere",
       "typeVersion": 1,
       "position": [
-        80,
-        208
+        592,
+        144
       ],
       "id": "25862b4a-686d-4424-a69b-775c5cccb373",
       "name": "Cohere Chat Model",
@@ -52,8 +58,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.4,
       "position": [
-        224,
-        208
+        720,
+        144
       ],
       "id": "c37583dc-2a90-431e-babb-0de1e2d7d50c",
       "name": "Simple Memory"
@@ -72,8 +78,8 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
       "typeVersion": 1.3,
       "position": [
-        528,
-        112
+        832,
+        144
       ],
       "id": "afb87763-0eb2-4e1b-b47e-c7bc0034ee1c",
       "name": "Simple Vector Store"
@@ -85,8 +91,8 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsCohere",
       "typeVersion": 1,
       "position": [
-        528,
-        272
+        912,
+        352
       ],
       "id": "91f9937c-ae5a-4876-b808-eee37e7eafa7",
       "name": "Embeddings Cohere",
@@ -96,6 +102,284 @@
           "name": "Cohere account 2"
         }
       }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Usá esta herramienta solo cuando el usuario pregunte por servicios disponibles, precios, duración o descripción de servicios de Clínica Aurora.",
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "servicios",
+          "mode": "list",
+          "cachedResultName": "servicios"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "disponible",
+              "value": "true"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        1120,
+        144
+      ],
+      "id": "1d1af7c0-eb8a-4c90-b959-bbb03520ffa7",
+      "name": "Appointment Saving tool",
+      "credentials": {
+        "postgres": {
+          "id": "Vj8nvBz6TwUkE06z",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Usá esta herramienta solo para registrar una nueva solicitud de turno cuando el usuario ya haya indicado servicio, fecha, hora, nombre completo y teléfono. ",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "turnos",
+          "mode": "list",
+          "cachedResultName": "turnos"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "nombre_cliente": "={{ $fromAI(\"nombre_cliente\", \"Nombre completo del cliente\") }}",
+            "telefono_cliente": "={{ $fromAI(\"telefono_cliente\", \"Teléfono de contacto del cliente\") }}",
+            "servicio_id": "={{ $fromAI(\"servicio_id\", \"ID numérico del servicio elegido\") }}",
+            "fecha_turno": "={{ $fromAI(\"fecha_turno\", \"Fecha del turno en formato YYYY-MM-DD\") }}",
+            "hora_turno": "={{ $fromAI(\"hora_turno\", \"Hora del turno en formato HH:MM\") }}",
+            "observaciones": "={{ $fromAI(\"observaciones\", \"Observaciones opcionales del turno. Si no hay observaciones, usar: Sin observaciones.\") }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "nombre_cliente",
+              "displayName": "nombre_cliente",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "telefono_cliente",
+              "displayName": "telefono_cliente",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "servicio_id",
+              "displayName": "servicio_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "fecha_turno",
+              "displayName": "fecha_turno",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "hora_turno",
+              "displayName": "hora_turno",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "time",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "observaciones",
+              "displayName": "observaciones",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "creado_en",
+              "displayName": "creado_en",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.6,
+      "position": [
+        1248,
+        144
+      ],
+      "id": "b6e25a6d-42bd-4e45-b4b8-f78ae0b86115",
+      "name": "Insert rows in a table in Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "Vj8nvBz6TwUkE06z",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Clasificá el mensaje del usuario para el bot de Clínica Aurora.\n\nRespondé únicamente con una de estas dos palabras:\nallowed\nblocked\n\nUsá \"allowed\" si el mensaje está relacionado con:\n- servicios de Clínica Aurora\n- precios\n- duración de servicios\n- turnos\n- reservas\n- cancelaciones\n- reprogramaciones\n- pagos\n- cuidados generales\n- términos y condiciones\n- políticas de atención\n- saludo simple\n\nUsá \"blocked\" si el mensaje pide:\n- información fuera de tema\n- diagnóstico médico\n- tratamiento médico personalizado\n- agenda completa\n- cantidad total de turnos\n- reportes\n- datos de otros clientes\n- información administrativa\n- información interna del negocio\n\nMensaje del usuario:\n{{ $json.chatInput }}"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        32,
+        0
+      ],
+      "id": "97bdf204-a43e-4b1a-81a5-09a5d8743a01",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatCohere",
+      "typeVersion": 1,
+      "position": [
+        104,
+        224
+      ],
+      "id": "4d694462-9c90-4977-a1e1-db366031f05e",
+      "name": "Cohere Chat Model1",
+      "credentials": {
+        "cohereApi": {
+          "id": "Li2Lqq19mDdIEwPk",
+          "name": "Cohere account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "6ad55f7c-a18d-4b04-b4df-87138359c1da",
+              "leftValue": "={{ $json.text }}",
+              "rightValue": "=allowed",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "05b50ec8-23bd-4d61-af06-73920a72ff09",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        384,
+        0
+      ],
+      "id": "64e3fc0d-3c79-43fe-9daf-81508612e3c8",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "message": "Lo siento, solo puedo ayudarte con consultas relacionadas con Clínica Aurora, sus servicios, turnos y políticas.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chat",
+      "typeVersion": 1.3,
+      "position": [
+        400,
+        368
+      ],
+      "id": "6cfe2e52-0e13-4ccc-b4c8-25bd7e07c66b",
+      "name": "Chat",
+      "webhookId": "f9199efb-bc32-40e3-b649-d24e290caddd"
     }
   ],
   "pinData": {},
@@ -104,7 +388,7 @@
       "main": [
         [
           {
-            "node": "AI Agent",
+            "node": "Basic LLM Chain",
             "type": "main",
             "index": 0
           }
@@ -154,6 +438,68 @@
           }
         ]
       ]
+    },
+    "Appointment Saving tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert rows in a table in Postgres": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cohere Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
@@ -161,7 +507,7 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "2e13826a-0d75-4baf-a38d-1ea8aa3bc6aa",
+  "versionId": "f1a8ad84-40b1-4c5d-a221-165598297669",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "7acb6e4616dfe1fe0399ec71119625da0571fb6ab1ec880764a63af749032f9d"
