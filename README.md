@@ -79,3 +79,11 @@ This workflow includes a chat trigger, an AI Agent, a Cohere chat model, simple 
 So far, the agent is responding well to general clinic-related questions. It can use the uploaded documents to answer about appointment requests, confirmation rules, cancellations, rescheduling, and general policies.
 
 PostgreSQL/Supabase is not connected to this workflow yet. The current focus is to test the agent behavior and make sure the RAG knowledge base works correctly before adding real appointment and client data.
+
+### Conversational Test Workflow
+
+So far, the bot can answer general questions about Clínica Aurora, use the uploaded documents for policies and FAQ-style questions, list available services from the database, and save appointment requests in the `turnos` table with a pending status.
+
+I also added a basic guardrail before the agent. It checks if the user message is related to Clínica Aurora before passing it to the AI Agent. If the question is outside the project scope, the workflow stops there and sends a fixed response instead.
+
+For now, this workflow is still being tested inside n8n. The next step will be adapting it to work with the real Telegram bot.
